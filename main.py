@@ -88,6 +88,7 @@ RR2 = combinedBDD.smoothing(frozenset(zvars[i] for i in range(5)))
 print("RR2(27, 6):", check_edge(RR2, 27, 6)) #should be true
 print("RR2(27, 9):", check_edge(RR2, 27,9)) #should be false
 
+#3.3 Compute BDD RR2*, nodes can reach within any positive steps
 
 #use exit() to end terminal
 #run with pyeda3
