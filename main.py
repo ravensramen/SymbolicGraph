@@ -14,6 +14,7 @@ yvars = [bddvar('y', i) for i in range(5)]
 
 R = BDDZERO
 
+#HELPER FUNCTIONS
 #does compose and smoothing, returns new BDD, dot operation
 #adds x2 steps each iteration until 32 (max edges between nodes)
 def compose_new_edge(A, B):
@@ -51,7 +52,7 @@ def int_to_bdd(n, vars): #determine bool representation of number (if each bit i
     return result
 
 
-
+#MAIN PROGRAM
 #1. Determine RR (all nodes)
 #determine if edge exists between i and j nodes
 for i in range(32):
@@ -109,7 +110,9 @@ while True:
     if new == RR2star: #if no new edges were added, break loop
         break
     RR2star = new #BDD includes new found edge
-#add test cases (?)
+#test cases, I believe it is strongly connected, so all combos return true (?)
+""" print("RR2star(0,5)", check_edge(RR2star, 0, 31)) """
+
 
 #3.4 Evaluate if statement A is true
 # For all u, if u is prime, there exists a v such that v is even AND u and v are connected within any positive steps
@@ -124,7 +127,7 @@ counterExamples = (~statement).smoothing(frozenset(xvars)) #find u that fail the
 result = ~counterExamples #all in set that pass statement
 
 #testcase, just check if the statement is true or false
-#print("StatementA:", result == BDDONE) #can use BDDONE or BDDZERO
+print("StatementA:", result == BDDONE) #can use BDDONE or BDDZERO
 
 #use exit() to end terminal
 #run with pyeda3 main.py
